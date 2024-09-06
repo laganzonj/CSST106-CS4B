@@ -1,5 +1,4 @@
-# CSST106-CS4B
-## Machine Problem No. 1: Exploring the Role of Computer Vision and Image Processing in AI
+# CSST106-CS4B: Machine Problem No. 1: Exploring the Role of Computer Vision and Image Processing in AI
 
 ### Laganzon, Jonathan Q. - BSCS4B
 
@@ -13,7 +12,9 @@
 ### Types of Image Processing Techniques
 
 1. Filtering, this technique involves applying a filter to an image to enhance or suppress specific features. Common filters include blurring to smooth images and sharpening to enhance details. Filtering helps in reducing noise, improving image clarity, and highlighting important features.
+   
 2. Edge detection identifies the boundaries of objects within an image by finding areas where the image intensity changes sharply. Techniques like the Canny or Sobel edge detectors are used to highlight these boundaries, which is useful for detecting shapes and structures within an image.
+   
 3. Segmentation divides an image into distinct regions or segments based on pixel values or other features. This process helps in isolating objects or areas of interest within an image, making it easier to analyze and process specific parts of the image separately. Segmentation is commonly used in object recognition and image analysis tasks.
 
 
@@ -30,14 +31,13 @@
 
 ### Image Processing Implementation
 
- Super-Resolution (Upscaling) increases image clarity by enlarging the image size, allowing more details to be seen and improving the recognition of facial features, especially in low-resolution images, using methods like Lanczos interpolation to maintain quality. Deblurring fixes blurry images caused by movement or focus issues, making facial features sharper and more distinct by applying filters such as the Wiener filter. Denoising cleans up images by removing random noise and distortions, ensuring clarity and preserving important details, using techniques like Non-Local Means Denoising. Together, these preprocessing steps enhance the performance of facial recognition systems by improving image quality and feature detection
+ Super-Resolution (Upscaling) increases image clarity by enlarging the image size, allowing more details to be seen and improving the recognition of facial features, especially in low-resolution images, using methods like Lanczos interpolation to maintain quality. Deblurring fixes blurry images caused by movement or focus issues, making facial features sharper and more distinct by applying filters such as the Wiener filter. Denoising cleans up images by removing random noise and distortions, ensuring clarity and preserving important details, using techniques like Non-Local Means Denoising. Together, these preprocessing steps enhance the performance of facial recognition systems by improving image quality and feature detection.
 
 ### Conclusion
 
  image processing is crucial in AI because it improves the quality and usability of images, which directly impacts the performance of AI models. Techniques like Super-Resolution, Deblurring, and Denoising enhance image clarity, making it easier for models to accurately detect and recognize features. This preprocessing ensures that AI systems can handle various image quality issues and produce more reliable results. From this activity, I learned that proper image preprocessing is essential for achieving high accuracy and efficiency in AI applications, as it prepares the data in a way that maximizes the model’s ability to learn and make accurate predictions.
 
-### Extension Activity:  Emerging Image Processing With  Deep Learning-
-Based Analysis.
+### Extension Activity:  Emerging Image Processing With  Deep Learning-Based Analysis.
 
 In recent years, advancements in deep learning have brought significant improvements to image processing techniques. These new methods enable computers to analyze and understand visual data more effectively, opening up new possibilities in areas such as facial recognition, medical imaging, and security systems. One emerging approach in this field is the use of Siamese Neural Networks (SNN), a specialized deep learning architecture designed for tasks that require comparing images. SNNs are particularly effective in determining the similarity between two images, making them valuable in applications like facial recognition, signature verification, and object tracking. 
 
