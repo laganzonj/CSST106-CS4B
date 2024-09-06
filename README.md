@@ -116,8 +116,9 @@ plt.axis('off')
 
 plt.tight_layout()
 plt.show()
+```
 
- Super-Resolution (Upscaling) increases image clarity by enlarging the image size, allowing more details to be seen and improving the recognition of facial features, especially in low-resolution images, using methods like Lanczos interpolation to maintain quality. Deblurring fixes blurry images caused by movement or focus issues, making facial features sharper and more distinct by applying filters such as the Wiener filter. Denoising cleans up images by removing random noise and distortions, ensuring clarity and preserving important details, using techniques like Non-Local Means Denoising. Together, these preprocessing steps enhance the performance of facial recognition systems by improving image quality and feature detection.
+Super-Resolution (Upscaling) increases image clarity by enlarging the image size, allowing more details to be seen and improving the recognition of facial features, especially in low-resolution images, using methods like Lanczos interpolation to maintain quality. Deblurring fixes blurry images caused by movement or focus issues, making facial features sharper and more distinct by applying filters such as the Wiener filter. Denoising cleans up images by removing random noise and distortions, ensuring clarity and preserving important details, using techniques like Non-Local Means Denoising. Together, these preprocessing steps enhance the performance of facial recognition systems by improving image quality and feature detection.
 
 ### Conclusion
 
