@@ -28,3 +28,21 @@
 
  Blur and Noise Introduction: acquired images that are blurred or noisy. Blur can occur due to movement or poor focus, and noise can be introduced by low-quality sensors or environmental factors. These issues can degrade recognition performance and make it harder to accurately identify faces.
 
+### Image Processing Implementation
+
+ Super-Resolution (Upscaling) increases image clarity by enlarging the image size, allowing more details to be seen and improving the recognition of facial features, especially in low-resolution images, using methods like Lanczos interpolation to maintain quality. Deblurring fixes blurry images caused by movement or focus issues, making facial features sharper and more distinct by applying filters such as the Wiener filter. Denoising cleans up images by removing random noise and distortions, ensuring clarity and preserving important details, using techniques like Non-Local Means Denoising. Together, these preprocessing steps enhance the performance of facial recognition systems by improving image quality and feature detection
+
+### Conclusion
+
+ image processing is crucial in AI because it improves the quality and usability of images, which directly impacts the performance of AI models. Techniques like Super-Resolution, Deblurring, and Denoising enhance image clarity, making it easier for models to accurately detect and recognize features. This preprocessing ensures that AI systems can handle various image quality issues and produce more reliable results. From this activity, I learned that proper image preprocessing is essential for achieving high accuracy and efficiency in AI applications, as it prepares the data in a way that maximizes the model’s ability to learn and make accurate predictions.
+
+### Extension Activity:  Emerging Image Processing With  Deep Learning-
+Based Analysis.
+
+In recent years, advancements in deep learning have brought significant improvements to image processing techniques. These new methods enable computers to analyze and understand visual data more effectively, opening up new possibilities in areas such as facial recognition, medical imaging, and security systems. One emerging approach in this field is the use of Siamese Neural Networks (SNN), a specialized deep learning architecture designed for tasks that require comparing images. SNNs are particularly effective in determining the similarity between two images, making them valuable in applications like facial recognition, signature verification, and object tracking. 
+
+Siamese Neural Networks (SNN) take two images as input and compare their features to determine how similar they are. This makes them ideal for tasks where it's important to check whether two images represent the same object or person. Their ability to learn detailed feature representations has made SNNs a powerful tool in improving accuracy and reliability in various real-world applications.
+
+### Potential Impact On Future AI Systems 
+
+New image processing techniques, such as deep learning-based image analysis approach, like Siamese Neural Networks (SNNs), are set to have a significant impact of how AI systems work in the future. SNNs are great at comparing two images to see how similar they are, which makes them useful in many areas. In facial recognition, SNNs can help identify people more accurately, even when the lighting is bad or the angle is different. For medical images, like CT scans or MRIs, SNNs can compare images over time to spot small changes, helping doctors catch diseases like cancer earlier. In security, SNNs can track people or objects in videos, even if the footage is blurry or low-quality. This makes SNNs useful for improving safety and monitoring systems. Overall, SNNs will make AI better at processing images with more accuracy in different fields.
