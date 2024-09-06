@@ -31,6 +31,92 @@
 
 ### Image Processing Implementation
 
+```python
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Step 1: Super-Resolution (Upscaling using Lanczos interpolation)
+def upscale_image(image, scale_percent=200):
+    width = int(image.shape[1] * scale_percent / 100)
+    height = int(image.shape[0] * scale_percent / 100)
+    dim = (width, height)
+    upscaled_image = cv2.resize(image, dim, interpolation=cv2.INTER_LANCZOS4)
+    return upscaled_image
+
+# Step 2: Deblur the image using Wiener filter approximation
+def deblur_image(image):
+    kernel = np.array([[1, 4, 6, 4, 1],
+                       [4, 16, 24, 16, 4],
+                       [6, 24, 36, 24, 6],
+                       [4, 16, 24, 16, 4],
+                       [1, 4, 6, 4, 1]]) / 256.0
+    deblurred_image = cv2.filter2D(image, -1, kernel)
+    return deblurred_image
+
+# Step 3: Denoising function for both color and grayscale
+def denoise_image(image, is_color=True):
+    if is_color:
+        denoised_image = cv2.fastNlMeansDenoisingColored(image, None, 10, 10, 7, 21)
+    else:
+        denoised_image = cv2.fastNlMeansDenoising(image, None, 10, 7, 21)
+    return denoised_image
+
+# Load the blurred and pixelated image
+image_path = '/content/sample_image.jpg'
+image = cv2.imread(image_path)
+
+# Apply Super-Resolution (Upscaling)
+upscaled_image = upscale_image(image, scale_percent=200)
+
+# Convert upscaled image to grayscale for deblurring
+grayscale_image = cv2.cvtColor(upscaled_image, cv2.COLOR_BGR2GRAY)
+
+# Apply deblurring
+deblurred_image = deblur_image(grayscale_image)
+
+# Apply denoising for both grayscale and color images
+denoised_image_color = denoise_image(upscaled_image, is_color=True)
+denoised_image_gray = denoise_image(grayscale_image, is_color=False)
+
+# Convert images to RGB for matplotlib display
+image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+upscaled_image_rgb = cv2.cvtColor(upscaled_image, cv2.COLOR_BGR2RGB)
+deblurred_image_rgb = cv2.cvtColor(deblurred_image, cv2.COLOR_GRAY2RGB)
+denoised_image_rgb_color = cv2.cvtColor(denoised_image_color, cv2.COLOR_BGR2RGB)
+denoised_image_rgb_gray = cv2.cvtColor(denoised_image_gray, cv2.COLOR_GRAY2RGB)
+
+# Display the original and processed images in a row
+plt.figure(figsize=(20, 5))
+
+plt.subplot(1, 5, 1)
+plt.title('Original Image')
+plt.imshow(image_rgb)
+plt.axis('off')
+
+plt.subplot(1, 5, 2)
+plt.title('Upscaled Image')
+plt.imshow(upscaled_image_rgb)
+plt.axis('off')
+
+plt.subplot(1, 5, 3)
+plt.title('Deblurred Image')
+plt.imshow(deblurred_image_rgb)
+plt.axis('off')
+
+plt.subplot(1, 5, 4)
+plt.title('Denoised Image (Color)')
+plt.imshow(denoised_image_rgb_color)
+plt.axis('off')
+
+plt.subplot(1, 5, 5)
+plt.title('Denoised Image (Grayscale)')
+plt.imshow(denoised_image_rgb_gray)
+plt.axis('off')
+
+plt.tight_layout()
+plt.show()
+
  Super-Resolution (Upscaling) increases image clarity by enlarging the image size, allowing more details to be seen and improving the recognition of facial features, especially in low-resolution images, using methods like Lanczos interpolation to maintain quality. Deblurring fixes blurry images caused by movement or focus issues, making facial features sharper and more distinct by applying filters such as the Wiener filter. Denoising cleans up images by removing random noise and distortions, ensuring clarity and preserving important details, using techniques like Non-Local Means Denoising. Together, these preprocessing steps enhance the performance of facial recognition systems by improving image quality and feature detection.
 
 ### Conclusion
