@@ -10,12 +10,20 @@ https://github.com/user-attachments/assets/0b5760a7-7253-45aa-a5cc-7de3bffa709a
 
 
 ### Types of Image Processing Techniques
+  >![filtering](https://github.com/user-attachments/assets/8b9fb6c6-8f83-4351-a6f4-daae8eff3712)
 
-1. Filtering, this technique involves applying a filter to an image to enhance or suppress specific features. Common filters include blurring to smooth images and sharpening to enhance details. Filtering helps in reducing noise, improving image clarity, and highlighting important features.
-   
-2. Edge detection identifies the boundaries of objects within an image by finding areas where the image intensity changes sharply. Techniques like the Canny or Sobel edge detectors are used to highlight these boundaries, which is useful for detecting shapes and structures within an image.
-   
-3. Segmentation divides an image into distinct regions or segments based on pixel values or other features. This process helps in isolating objects or areas of interest within an image, making it easier to analyze and process specific parts of the image separately. Segmentation is commonly used in object recognition and image analysis tasks.
+
+1. **Filtering**, this technique involves applying a filter to an image to enhance or suppress specific features. Common filters include blurring to smooth images and sharpening to enhance details. Filtering helps in reducing noise, improving image clarity, and highlighting important features.
+
+  >![edge_detection](https://github.com/user-attachments/assets/9d0ad7e9-41fe-4013-b09e-b713f1ed1c5c)
+
+
+2. **Edge detection** identifies the boundaries of objects within an image by finding areas where the image intensity changes sharply. Techniques like the Canny or Sobel edge detectors are used to highlight these boundaries, which is useful for detecting shapes and structures within an image.
+
+  >![segmentation](https://github.com/user-attachments/assets/80af4362-a983-469e-bc9e-7854d7c21ac6)
+
+
+3. **Segmentation** divides an image into distinct regions or segments based on pixel values or other features. This process helps in isolating objects or areas of interest within an image, making it easier to analyze and process specific parts of the image separately. Segmentation is commonly used in object recognition and image analysis tasks.
 
 
 ### Case Study Overview: Facial Recognition Systems
@@ -117,6 +125,7 @@ plt.axis('off')
 plt.tight_layout()
 plt.show()
 ```
+![output1](https://github.com/user-attachments/assets/8593ce5d-bbe2-45a2-9410-26dec2f7a751)
 
 Super-Resolution (Upscaling) increases image clarity by enlarging the image size, allowing more details to be seen and improving the recognition of facial features, especially in low-resolution images, using methods like Lanczos interpolation to maintain quality. Deblurring fixes blurry images caused by movement or focus issues, making facial features sharper and more distinct by applying filters such as the Wiener filter. Denoising cleans up images by removing random noise and distortions, ensuring clarity and preserving important details, using techniques like Non-Local Means Denoising. Together, these preprocessing steps enhance the performance of facial recognition systems by improving image quality and feature detection.
 
