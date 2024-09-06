@@ -1,7 +1,7 @@
 # CSST106-CS4B: Machine Problem No. 1: Exploring the Role of Computer Vision and Image Processing in AI
 
 ### Laganzon, Jonathan Q. - BSCS4B
-
+https://github.com/user-attachments/assets/0b5760a7-7253-45aa-a5cc-7de3bffa709a
 ### Introduction to Computer Vision and Image Processing
 
 • Computer Vision is a field of artificial intelligence (AI) that enables machines to interpret and understand visual information, similar to how humans use their eyes and brains to interpret things. It involves acquiring, processing, analyzing, and understanding images or videos. It has a goal of making decisions or providing output based on that visual data. Computer Vision is crucial for applications like facial recognition, object detection, autonomous vehicles, medical imaging, and augmented reality.
