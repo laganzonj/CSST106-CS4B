@@ -2,7 +2,8 @@
 
 ### Laganzon, Jonathan Q. - BSCS4B
 [https://github.com/user-attachments/assets/0b5760a7-7253-45aa-a5cc-7de3bffa709a](https://github.com/user-attachments/assets/b7a696e5-a9db-4411-85c9-e2c9b7d21db3)
-
+### Colab Notebook
+https://colab.research.google.com/drive/1FRdvBKpk9bznmL_P1IKadDGVhqKkUfrc?usp=sharing
 ### Image Processing Techniques
 
 - Scaling
