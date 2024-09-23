@@ -5,6 +5,13 @@
  #### COLAB NOTEBOOK 
  https://colab.research.google.com/drive/1FRdvBKpk9bznmL_P1IKadDGVhqKkUfrc#scrollTo=5foC0G0XlrQf
 
+
+![download (1)](https://github.com/user-attachments/assets/e6546ce2-5e92-4d34-909b-f0f64f9eccf7)
+
+
+
+![download](https://github.com/user-attachments/assets/6949e254-313e-4b13-b9ef-3e79dad0d3c2)
+
 ### Blurring Techniques and Their Uses:
 1. Gaussian Blur: Smooths the image by averaging surrounding pixels, reducing noise and softening details. Commonly used for background blur in photography, it provides a gentle blurring effect but doesn't keep edges sharp.
 
@@ -29,6 +36,10 @@
 - Facial Enhancement: The bilateral filter is ideal for facial enhancement, smoothing skin tones while keeping key features sharp. Gaussian blur can also soften skin textures, but at the expense of some detail loss. Unsharp mask is used to bring out fine details, like eyes or hair, in portraits.
 
 
+
+
+
+![download (2)](https://github.com/user-attachments/assets/7b81b0da-1b9d-4a51-bed7-b905b4c3fc89)
 ### Edge Detection Technique
 
 1. Sobel edge detection is a simple and computationally efficient method. It's sensitive to noise and can
