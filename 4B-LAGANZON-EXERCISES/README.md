@@ -27,3 +27,13 @@
 - Sharpening: Unsharp mask is the primary filter for sharpening, enhancing image details by increasing local contrast.
 - Artistic Effect: Motion blur adds artistic motion effects, while Gaussian and box filters are used to create soft, dreamy aesthetics.
 - Facial Enhancement: The bilateral filter is ideal for facial enhancement, smoothing skin tones while keeping key features sharp. Gaussian blur can also soften skin textures, but at the expense of some detail loss. Unsharp mask is used to bring out fine details, like eyes or hair, in portraits.
+
+
+### Edge Detection Technique
+
+#### Edge Detection Techniques Overview
+Sobel, Laplacian, Prewitt, and Canny are popular edge detection techniques used in image processing to identify boundaries and transitions in images. Sobel is known for its computational efficiency, making it suitable for real-time applications like video processing. However, it is sensitive to noise, which can result in false edges. Laplacian detects edges based on second-order derivatives, but its high sensitivity to noise can produce thicker edges, making it less ideal for applications requiring precision, such as medical imaging. Prewitt functions similarly to Sobel, providing moderate sensitivity to noise and producing edges of average thinness, useful in simpler edge detection tasks. Canny, on the other hand, is regarded as one of the most robust algorithms. It effectively reduces noise, producing thin and continuous edges, which is crucial in applications like object recognition and computer vision.
+
+![6dafff01-2eaa-4f43-a795-ed3050e85b0c](https://github.com/user-attachments/assets/c18f7da1-14f3-4ec8-bea5-53068bb03e53)
+
+When looking at edge detection methods, noise sensitivity is a key factor: Canny is the least affected by noise, making it great for clear edge detection, while Laplacian struggles more with noise. Edge thinness matters too; Canny produces sharp, thin edges, while Sobel and Prewitt create thicker ones. For edge continuity, Canny stands out by providing smooth edges, which are essential for accurate object recognition. 
