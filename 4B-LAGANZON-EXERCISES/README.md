@@ -31,9 +31,26 @@
 
 ### Edge Detection Technique
 
-#### Edge Detection Techniques Overview
-Sobel, Laplacian, Prewitt, and Canny are popular edge detection techniques used in image processing to identify boundaries and transitions in images. Sobel is known for its computational efficiency, making it suitable for real-time applications like video processing. However, it is sensitive to noise, which can result in false edges. Laplacian detects edges based on second-order derivatives, but its high sensitivity to noise can produce thicker edges, making it less ideal for applications requiring precision, such as medical imaging. Prewitt functions similarly to Sobel, providing moderate sensitivity to noise and producing edges of average thinness, useful in simpler edge detection tasks. Canny, on the other hand, is regarded as one of the most robust algorithms. It effectively reduces noise, producing thin and continuous edges, which is crucial in applications like object recognition and computer vision.
+1. Sobel edge detection is a simple and computationally efficient method. It's sensitive to noise and can
+produce double edges.
+2. Laplacian edge detection is less sensitive to noise than Sobel edge detection but can be more susceptible
+to noise. It may also produce multiple edges for a single edge.
+3. Prewitt edge detection is also a simple and computationally efficient method. It's like Sobel edge detection
+in terms of sensitivity to noise and the potential for double edges.
+4. Canny edge detection is considered one of the most robust edge detection algorithms. It's less sensitive
+to noise than Sobel and Laplacian, and it can produce thin, continuous edges.
+
 
 ![68db3912-2200-4b6a-aa01-84fa5fba9c9a](https://github.com/user-attachments/assets/da20b465-264e-4a0a-bd68-06ea6478c8b0)
 
-When looking at edge detection methods, noise sensitivity is a key factor: Canny is the least affected by noise, making it great for clear edge detection, while Laplacian struggles more with noise. Edge thinness matters too; Canny produces sharp, thin edges, while Sobel and Prewitt create thicker ones. For edge continuity, Canny stands out by providing smooth edges, which are essential for accurate object recognition. 
+- Sensitivity to Noise
+Canny is the best at reducing noise, making it great for clear edges. Laplacian is more affected by noise, leading to potential false edges, while Sobel and Prewitt have moderate sensitivity.
+
+- Edge Thinness
+Canny creates thin, precise edges because it sharpens them during processing. Sobel and Prewitt make thicker edges, which can hide details.
+
+- Edge Continuity
+Canny provides smooth and continuous edges, essential for identifying shapes accurately. Sobel and Prewitt can produce fragmented edges, while Laplacian may show multiple edges for one boundary.
+
+- Computational Efficiency
+Sobel, Prewitt, and Laplacian are fast and good for real-time use. Canny is slower due to its complex steps, but it offers better precision for tasks where accuracy is key.
