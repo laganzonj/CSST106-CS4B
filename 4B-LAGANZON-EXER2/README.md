@@ -3,7 +3,6 @@
 ## Overview
 This document outlines the methodology, observations, and results for each task conducted in **Exercise 2** of the CSST106 course. The exercise involves feature extraction and matching using Python and OpenCV.
 
-## Author
 **Jonathan Q. Laganzon**  
 **Program**: BSCS-4B
 
@@ -60,6 +59,9 @@ plt.show()
 
 **Results**:
 - Key points were visualized on images, showing high feature density in complex areas.
+![exer2-compare_algo](https://github.com/user-attachments/assets/0ad5b5fa-4c6e-4b44-b64c-0dfc7434b53d)
+
+
 
 ### 2. SURF (Speeded-Up Robust Features) Feature Extraction
 ```python
@@ -111,6 +113,9 @@ plt.show()
 
 **Results**:
 - Feature visualization displayed distinctive points with faster computation.
+![exer2-homography](https://github.com/user-attachments/assets/15f1a742-10c1-416c-8df7-e0aca2fb6577)
+
+
 
 ### 3. ORB (Oriented FAST and Rotated BRIEF) Feature Extraction
 ```python
@@ -162,6 +167,9 @@ plt.show()
 
 **Results**:
 - Displayed key points highlighting edges and corners.
+![exer2-force_matcher](https://github.com/user-attachments/assets/2a82d67b-a549-416c-8dae-6a4a41b2f397)
+
+
 
 ### 4. Feature Matching
 ```python
@@ -224,6 +232,10 @@ plt.show()
 
 **Results**:
 - Matched key points between images, demonstrating successful correspondence.
+![exer2-orb](https://github.com/user-attachments/assets/48aa602a-8c5c-4a57-8a4e-2adcdefd903f)
+
+
+
 
 ### 5. Applications of Feature Matching
 ```python
@@ -292,6 +304,10 @@ plt.show()
 
 **Results**:
 - Images aligned successfully using homography overlays.
+![exer2-surf](https://github.com/user-attachments/assets/5cb12099-2c1f-4a60-9377-da5bb5b03e85)
+
+
+
 
 ### 6. Combining Feature Extraction Methods
 ```python
@@ -386,6 +402,9 @@ plt.show()
 
 **Results**:
 - Combined output visualizations showed more comprehensive key points.
+![exer2-sift](https://github.com/user-attachments/assets/f4bbebcc-a08e-4d48-9b77-f2d52688ce82)
+
+
 
 ## Conclusion
 - **SIFT**: Best for high accuracy but slow.
