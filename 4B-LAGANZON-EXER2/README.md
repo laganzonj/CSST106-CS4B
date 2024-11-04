@@ -4,7 +4,7 @@
 This document outlines the methodology, observations, and results for each task conducted in **Exercise 2** of the CSST106 course. The exercise involves feature extraction and matching using Python and OpenCV.
 
 **Jonathan Q. Laganzon**  
-**Program**: BSCS-4B
+**BSCS-4B
 
 ## Tasks and Methodology
 
@@ -167,7 +167,6 @@ plt.show()
 
 **Results**:
 - Displayed key points highlighting edges and corners.
-- 
 ![exer2-orb](https://github.com/user-attachments/assets/48aa602a-8c5c-4a57-8a4e-2adcdefd903f)
 
 
