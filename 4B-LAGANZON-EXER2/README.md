@@ -1,4 +1,5 @@
-# CSST106 - Perception and Computer Vision: Exercise 2 Documentation
+# CSST106 - Perception and Computer Vision: Exercise 2 : Feature Extraction and Object
+Detection
 
 ## Overview
 This document outlines the methodology, observations, and results for each task conducted in **Exercise 2** of the CSST106 course. The exercise involves feature extraction and matching using Python and OpenCV.
