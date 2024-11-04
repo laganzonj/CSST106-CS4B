@@ -305,6 +305,7 @@ plt.show()
 
 **Results**:
 - Images aligned successfully using homography overlays.
+
 ![exer2-homography](https://github.com/user-attachments/assets/15f1a742-10c1-416c-8df7-e0aca2fb6577)
 
 
