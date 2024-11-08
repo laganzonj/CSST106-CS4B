@@ -34,6 +34,9 @@ pip install opencv-python matplotlib Pillow scikit-image
    plt.axis('off')
    plt.show()
    ```
+![exer3-greyscale](https://github.com/user-attachments/assets/640dc91c-3764-477d-acfa-92bd7b4655a8)
+
+
 
 ### 2. **Exercise 1: Harris Corner Detection**
    - **Code**: Applies the Harris Corner Detection algorithm to identify corners in the grayscale image.
@@ -59,6 +62,9 @@ pip install opencv-python matplotlib Pillow scikit-image
    plt.axis('off')
    plt.show()
    ```
+![exer3-hcd](https://github.com/user-attachments/assets/d1134b79-d348-468a-af68-a42c6e1b39ca)
+
+
 
 ### 3. **Exercise 2: HOG (Histogram of Oriented Gradients) Feature Extraction**
    - **Code**: Extracts HOG features, a method for object detection, showing texture and gradient orientation.
@@ -91,6 +97,9 @@ pip install opencv-python matplotlib Pillow scikit-image
    plt.axis('off')
    plt.show()
    ```
+![exer3-hog](https://github.com/user-attachments/assets/9b6a30d4-8b33-423c-8617-5e69e242940c)
+
+
 
 ### 4. **Exercise 3: FAST (Features from Accelerated Segment Test) Keypoint Detection**
    - **Code**: Uses the FAST algorithm to detect keypoints, areas of interest that are resistant to rotation and scaling.
@@ -120,6 +129,9 @@ pip install opencv-python matplotlib Pillow scikit-image
    plt.axis('off')
    plt.show()
    ```
+![exer3-fast](https://github.com/user-attachments/assets/aa8eb293-5598-436c-8ea8-954539567c74)
+
+
 
 ### 5. **Exercise 4: Feature Matching using ORB and FLANN**
    - **Code**: Utilizes ORB (Oriented FAST and Rotated BRIEF) for feature detection and FLANN for feature matching between two images.
@@ -146,6 +158,9 @@ pip install opencv-python matplotlib Pillow scikit-image
    plt.axis('off')
    plt.show()
    ```
+![exer3-orb-flann](https://github.com/user-attachments/assets/2b0d850b-0d63-44d6-b601-5854d9339746)
+
+
 
 ### 6. **Exercise 5: Image Segmentation using Watershed Algorithm**
    - **Code**: Applies the Watershed algorithm for image segmentation, dividing the image into distinct regions.
@@ -172,6 +187,9 @@ pip install opencv-python matplotlib Pillow scikit-image
    plt.axis('off')
    plt.show()
    ```
+![exer3-watershed](https://github.com/user-attachments/assets/cf9288df-8897-4e30-ac2d-7133d845fdef)
+
+
 
 ## Conclusion
 
