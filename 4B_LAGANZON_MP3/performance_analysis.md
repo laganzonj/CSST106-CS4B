@@ -1,4 +1,4 @@
-# CSST106 - Perception and Computer Vision: Machine Problem 3
+# CSST106 - Perception and Computer Vision: Machine Problem 3: Feature Extraction and Object Detection
 
 
 ### Jonathan Q. Laganzon
