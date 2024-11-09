@@ -8,7 +8,15 @@
 This project demonstrates how to set up and use YOLOv3 (You Only Look Once version 3), a real-time object detection system, in Python. It’s part of a machine problem for the course CSST106 - Perception and Computer Vision.
 
 ### Model Loading
-This section initializes the YOLOv3 model, which loads the configuration, weight, and class name files. It includes mounting Google Drive (if required for data storage) and setting up paths for model files.
+In this section, we load the YOLOv3 model, which involves three key files:
+1. **Configuration file (`yolov3.cfg`)** - Defines the structure of the YOLOv3 model.
+2. **Weights file (`yolov3.weights`)** - Contains the trained parameters of the model, enabling it to recognize objects.
+3. **Class names file (`coco.names`)** - Lists the names of all object classes the model can detect, like "person," "car," or "dog."
+
+These files must be properly referenced for YOLOv3 to work. If you're using Google Drive to store these files, this section also explains how to mount your Google Drive for easy file access.
+
+---
+
 ```python
 import cv2
 import numpy as np
@@ -23,8 +31,17 @@ with open("coco.names", "r") as f:
 ```
 
 ### Object Detection
-The object detection function applies YOLOv3 to detect objects in the input images. This includes loading the model, setting up detection parameters, and running inference on input images. It processes the output to identify bounding boxes, class names, and confidence scores for each detected object.
+Object detection is the core functionality of YOLOv3. In this part:
+1. **Preparing the image** - The input image is processed and resized to fit the model’s input size requirements.
+2. **Running detection** - YOLOv3 analyzes the image to detect objects, using its network layers and pre-trained weights.
+3. **Output processing** - The model returns details about each detected object, including:
+   - **Bounding boxes** - The rectangular areas around each detected object.
+   - **Class labels** - The names of the objects (like "cat," "car").
+   - **Confidence scores** - The probability that the detection is accurate.
 
+This process provides the coordinates and information needed to draw boxes around detected objects and label them with their class names and confidence scores.
+
+---
 ```python
 def detect_objects(image):
     height, width = image.shape[:2]
@@ -71,7 +88,14 @@ def detect_objects(image):
 ```
 
 ### Visualization
-This section visualizes the detected objects by plotting bounding boxes and class names on the input image. The detected objects are highlighted with labels and boxes, making it easier to interpret the model's performance visually.
+The visualization step makes the detection results easy to interpret by:
+1. **Drawing bounding boxes** around each detected object.
+2. **Adding labels** with class names and confidence scores beside each object.
+
+Visualization helps confirm if the model is correctly identifying objects. The bounding boxes and labels clearly indicate where and what objects are found in the image, making it easy to evaluate the model's performance at a glance.
+
+---
+
 
 ```python
 def draw_boxes(image, boxes, confidences, class_ids, indexes):
@@ -104,9 +128,19 @@ plt.imshow(result_image)
 plt.axis('off')
 plt.show()
 ```
+![mp5-viz](https://github.com/user-attachments/assets/9aa90000-f175-47e7-bdd1-55478db572fe)
+
+
 
 ### Testing
-This part of the project allows testing the model on a set of images to evaluate its detection capabilities. The test function loads test images, applies the object detection function, and generates the output for analysis.
+Testing allows you to evaluate YOLOv3’s detection abilities on a set of images. In this section:
+1. **Load test images** - Select images on which you want to test the model.
+2. **Run the object detection function** - Each image goes through the detection process.
+3. **View results** - The detected objects are displayed with bounding boxes and labels, and detection performance (like time taken) is printed.
+
+Testing provides insights into how well the model performs across different images, showing its accuracy, speed, and capability in varied scenarios. 
+
+---
 
 ```python
 import time
@@ -160,48 +194,77 @@ def test_yolo_on_images(image_paths):
 test_yolo_on_images(image_paths)
 ```
 
-Performance Analysis
-After running tests, performance analysis calculates key metrics such as precision, recall, and accuracy for the detection model. This is essential to understand how well the YOLOv3 model performs on the given dataset.
 
-# Performance Analysis
+![mp5-test1](https://github.com/user-attachments/assets/5b1ead6c-f56a-4432-9a3c-91f76dc7e205)
 
-- This section documents the detection time, the number of objects detected, and additional insights for each test image, allowing us to evaluate the speed and accuracy of the YOLO model.
+![mp5-test2](https://github.com/user-attachments/assets/85d88061-efda-42f1-86f3-78f7c04192d5)
 
-## Image 1
+![mp5-test3](https://github.com/user-attachments/assets/e82a0c16-9a25-4961-bc06-a7fd26a6c8c6)
+
+
+## Performance Analysis
+
+In this section, we analyze the model’s performance by looking at detection times, accuracy, and the number of objects detected in each test image. This analysis helps us understand YOLOv3’s strengths in real-time object detection and how its single-pass detection mechanism contributes to its speed and effectiveness.
+
+---
+
+### Key Observations:
+1. **Speed and Detection Time**: YOLOv3 performs a single pass through the image to detect objects, which contributes to its speed. The times recorded for each image show the model's capability for real-time applications, where detection times under 1.5 seconds are generally considered responsive.
+2. **Accuracy**: YOLOv3's accuracy is evident from its confidence scores and correct bounding of detected objects. The high confidence scores show that YOLO can accurately detect and identify objects even in complex or busy scenes.
+
+---
+
+### Test Results and Analysis for Each Image
+
+---
+
+### Image 1
 - **Detection Time**: 0.93 seconds
 - **Objects Detected**: 5
 - **Detection Details**:
-  - Bounding boxes: 13
-  - Confidence scores: 13
+  - Bounding Boxes: 13
+  - Confidence Scores: 13
 
-**Analysis**:
-The model successfully detected multiple instances of "dog" in the image, with confidence scores ranging from 0.71 to 1.00.
+**Analysis**:  
+In this image, the model successfully detected multiple instances of the "dog" class with high confidence, ranging from 0.71 to 1.00. The bounding boxes were precise and consistent across similar objects.
 
-**Observation**: The YOLO model's high confidence and consistent bounding boxes show its effectiveness in identifying similar objects, such as puppies, in a single image.
+**Observation**:  
+YOLOv3’s ability to identify multiple similar objects (e.g., puppies) in a single image demonstrates its reliability and accuracy. The high confidence scores reflect the model’s effectiveness in distinguishing repeated instances of the same object within the frame.
 
-## Image 2
+---
+
+### Image 2
 - **Detection Time**: 1.03 seconds
 - **Objects Detected**: 5
 - **Detection Details**:
-  - Bounding boxes: 19
-  - Confidence scores: 19
+  - Bounding Boxes: 19
+  - Confidence Scores: 19
 
-**Analysis**:
-YOLO detected multiple objects, such as "car," with varying confidence scores. The model performed well in identifying and bounding different cars even in a busy background.
+**Analysis**:  
+In a busier background with several cars, YOLOv3 detected multiple objects with varying confidence levels. Despite the scene's complexity, the model was able to distinguish each car and provided accurate bounding boxes.
 
-**Observation**: Despite the complex scene with several vehicles, YOLO maintained high accuracy and detection speed, showcasing its suitability for scenarios with multiple instances of the same object.
+**Observation**:  
+YOLOv3 performs well in complex scenes, maintaining high accuracy and fast detection. Its single-pass architecture enables it to quickly identify and locate multiple instances of similar objects (like cars), showing its suitability for real-world environments with numerous, repetitive items.
 
-## Image 3
+---
+
+### Image 3
 - **Detection Time**: 1.35 seconds
 - **Objects Detected**: 2
 - **Detection Details**:
-  - Bounding boxes: 8
-  - Confidence scores: 8
+  - Bounding Boxes: 8
+  - Confidence Scores: 8
 
-**Analysis**:
-The model correctly identified a "person" and "motorbike" with high confidence scores (up to 1.00 for person and 0.99 for motorbike).
+**Analysis**:  
+This image included different types of objects—a "person" and a "motorbike." YOLOv3 correctly identified both with high confidence, scoring up to 1.00 for "person" and 0.99 for "motorbike."
 
-**Observation**: YOLO effectively handles more diverse scenes with different object classes. In this case, it detected both a human and a vehicle with high accuracy.
+**Observation**:  
+YOLOv3 effectively handles diverse scenes with different object classes. The high accuracy in detecting distinct object types highlights the model's flexibility and adaptability to a variety of objects in a single frame.
+
+---
+
+The YOLOv3 model demonstrates a balance of speed and accuracy, thanks to its single-pass detection approach. This enables YOLO to quickly analyze an image and deliver high confidence in detection, even in complex and diverse scenes. YOLO’s structure is optimized for real-time applications, making it a powerful tool for scenarios requiring fast, accurate object detection across varied environments.
+---
 
 ###Summary
 This project offers a comprehensive workflow to load, run, and analyze an object detection model (YOLOv3) using Python. It includes sections for visualization, testing, and performance evaluation to ensure a complete understanding of the model's capabilities
