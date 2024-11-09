@@ -4,6 +4,9 @@
 ### Jonathan Q. Laganzon
 ### BSCS-4B
 
+## Overview
+This document explains the code and tasks in Exercise 4, which focuses on different object detection techniques using Histogram of Oriented Gradients (HOG), YOLO (You Only Look Once), SSD (Single Shot MultiBox Detector), and a comparison of traditional and deep learning methods.
+
 
 ## Exercise 1: HOG (Histogram of Oriented Gradients) Object Detection
 
