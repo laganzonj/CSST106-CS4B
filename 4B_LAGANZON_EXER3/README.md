@@ -1,5 +1,5 @@
 
-# CSST106 - Perception and Computer Vision: Exercise 3
+# CSST106 - Perception and Computer Vision: Exercise 3: Advanced Feature Extraction and Image Processing
 
 
 ### Jonathan Q. Laganzon
