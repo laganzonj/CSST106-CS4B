@@ -1,8 +1,9 @@
 
 # CSST106 - Perception and Computer Vision: Exercise 3
 
-## Author
-Jonathan Q. Laganzon (BSCS-4B)
+
+### Jonathan Q. Laganzon
+### BSCS-4B
 
 ## Overview
 
