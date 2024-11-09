@@ -1,6 +1,8 @@
-# **CSST106 - Perception and Computer Vision**
-**EXERCISE 4**
-**JONATHAN Q. LAGANZON from BSCS-4B**
+# CSST106 - Perception and Computer Vision: Exercise 4
+
+
+### Jonathan Q. Laganzon
+### BSCS-4B
 
 ### ***Exercise 1: HOG (Histogram of Oriented Gradients) Object Detection***
 
