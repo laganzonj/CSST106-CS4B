@@ -5,7 +5,8 @@
 ### BSCS-4B
 
 ## Overview
-This project demonstrates how to set up and use YOLOv3 (You Only Look Once version 3), a real-time object detection system, in Python. It’s part of a machine problem for the course CSST106 - Perception and Computer Vision.
+This project demonstrates how to set up and use YOLOv3 (You Only Look Once version 3), a real-time object detection system using python.
+
 
 ### Model Loading
 In this section, we load the YOLOv3 model, which involves three key files:
