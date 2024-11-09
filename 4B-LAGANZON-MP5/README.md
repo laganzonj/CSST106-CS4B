@@ -210,8 +210,8 @@ In this section, we analyze the model’s performance by looking at detection ti
 ---
 
 ### Key Observations:
-1. **Speed and Detection Time**: YOLOv3 performs a single pass through the image to detect objects, which contributes to its speed. The times recorded for each image show the model's capability for real-time applications, where detection times under 1.5 seconds are generally considered responsive.
-2. **Accuracy**: YOLOv3's accuracy is evident from its confidence scores and correct bounding of detected objects. The high confidence scores show that YOLO can accurately detect and identify objects even in complex or busy scenes.
+1. **Speed and Detection Time**: YOLOv3 performs a single pass through the image to detect objects, which contributes to its speed. The detection times recorded for each image show the model's capability for real-time applications, where detection times under 1.5 seconds are generally considered responsive.
+2. **Accuracy**: YOLOv3 generally produces high-confidence detections, reflecting its ability to accurately identify objects in complex or busy scenes. However, some images showed redundant or extra bounding boxes around single objects, indicating possible limitations in Non-Maximum Suppression (NMS).
 
 ---
 
@@ -227,10 +227,10 @@ In this section, we analyze the model’s performance by looking at detection ti
   - Confidence Scores: 13
 
 **Analysis**:  
-In this image, the model successfully detected multiple instances of the "dog" class with high confidence, ranging from 0.71 to 1.00. The bounding boxes were precise and consistent across similar objects.
+In this image, YOLOv3 detected five instances of "dog" with high confidence, ranging from 0.71 to 1.00. However, the model produced 13 bounding boxes instead of 5. This indicates that multiple overlapping boxes were drawn around each puppy, suggesting an issue with redundant bounding boxes.
 
 **Observation**:  
-YOLOv3’s ability to identify multiple similar objects (e.g., puppies) in a single image demonstrates its reliability and accuracy. The high confidence scores reflect the model’s effectiveness in distinguishing repeated instances of the same object within the frame.
+The excess bounding boxes may have resulted from YOLO’s difficulty in accurately suppressing overlapping detections. This redundancy impacts interpretability, as it gives the impression of additional detections. Adjusting the confidence threshold or NMS parameters may help reduce these extra boxes.
 
 ---
 
@@ -242,10 +242,10 @@ YOLOv3’s ability to identify multiple similar objects (e.g., puppies) in a sin
   - Confidence Scores: 19
 
 **Analysis**:  
-In a busier background with several cars, YOLOv3 detected multiple objects with varying confidence levels. Despite the scene's complexity, the model was able to distinguish each car and provided accurate bounding boxes.
+In a complex scene with multiple cars, YOLOv3 detected seven unique objects but generated 19 bounding boxes. Some vehicles had multiple overlapping boxes, likely due to slight variations in confidence scores that caused the NMS to retain extra boxes.
 
 **Observation**:  
-YOLOv3 performs well in complex scenes, maintaining high accuracy and fast detection. Its single-pass architecture enables it to quickly identify and locate multiple instances of similar objects (like cars), showing its suitability for real-world environments with numerous, repetitive items.
+Despite the complex background, YOLOv3 maintained high detection accuracy. However, the additional bounding boxes around certain cars indicate redundant detections. Fine-tuning the model's NMS settings could help minimize these overlapping boxes in dense scenes, improving result clarity.
 
 ---
 
@@ -257,15 +257,20 @@ YOLOv3 performs well in complex scenes, maintaining high accuracy and fast detec
   - Confidence Scores: 8
 
 **Analysis**:  
-This image included different types of objects—a "person" and a "motorbike." YOLOv3 correctly identified both with high confidence, scoring up to 1.00 for "person" and 0.99 for "motorbike."
+For this image, YOLOv3 correctly identified a "person" and a "motorbike" with high confidence scores of 1.00 and 0.99, respectively. However, it produced eight bounding boxes instead of two, with several redundant boxes around the detected objects.
 
 **Observation**:  
-YOLOv3 effectively handles diverse scenes with different object classes. The high accuracy in detecting distinct object types highlights the model's flexibility and adaptability to a variety of objects in a single frame.
+This image shows that YOLOv3 may struggle with object differentiation when there are fewer objects in the scene. The multiple overlapping boxes for each object may be due to the NMS not fully suppressing similar detections. This excess impacts interpretability and highlights the need for optimized NMS parameters to handle simpler scenes effectively
+
+
+### Summary
+The YOLOv3 model demonstrates a balance of speed and accuracy, enabled by its single-pass detection approach, which is optimized for real-time applications. However, this analysis reveals that:
+
+- Redundant Boxes: In each test image, YOLOv3 generated more bounding boxes than necessary, which may affect clarity.
+- NMS Settings: Fine-tuning Non-Maximum Suppression (NMS) parameters, such as the confidence threshold and IoU threshold, could help reduce these redundant boxes, making detections cleaner.
+
+Overall, YOLOv3 remains a powerful tool for scenarios requiring fast and accurate object detection, but these observations indicate that its output could be refined further to improve interpretability in varied environments.
 
 ---
 
-The YOLOv3 model demonstrates a balance of speed and accuracy, thanks to its single-pass detection approach. This enables YOLO to quickly analyze an image and deliver high confidence in detection, even in complex and diverse scenes. YOLO’s structure is optimized for real-time applications, making it a powerful tool for scenarios requiring fast, accurate object detection across varied environments.
----
-
-###Summary
 This project offers a comprehensive workflow to load, run, and analyze an object detection model (YOLOv3) using Python. It includes sections for visualization, testing, and performance evaluation to ensure a complete understanding of the model's capabilities
