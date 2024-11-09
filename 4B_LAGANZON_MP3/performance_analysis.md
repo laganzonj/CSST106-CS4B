@@ -125,6 +125,7 @@ plt.title(r'$\bf{Side\ View}$')
 plt.imshow(image2_np)
 plt.show()
 ```
+![mp3-step1](https://github.com/user-attachments/assets/f94e9d8c-166c-412c-9ebb-8be8d8965264)
 Discussion
 1. Import Libraries: We use cv2 for computer vision tasks, matplotlib for displaying images, numpy for handling numerical operations, and PIL to open images.
 2. Load Images: The images are loaded and converted to NumPy arrays, which is a format suitable for OpenCV operations.
@@ -200,6 +201,7 @@ plt.imshow(image2_orb_kp)
 plt.tight_layout()
 plt.show()
 ```
+![mp3-step2](https://github.com/user-attachments/assets/bd124f4f-2239-4bb8-807c-b0ea46d97d0e)
 Discussion
 1. SIFT (Scale-Invariant Feature Transform): Detects scale- and rotation-invariant features, which makes it useful for robust object recognition.
 2. SURF (Speeded-Up Robust Features): Similar to SIFT but optimized for faster execution. It also provides rotation and scale invariance.
@@ -296,6 +298,7 @@ plt.imshow(orb_flann_matches_img)
 plt.tight_layout()
 plt.show()
 ```
+![mp3-step3](https://github.com/user-attachments/assets/a704a417-6f97-4610-ac98-a8f5d9759abf)
 Discussion
 1. Brute-Force Matching: Every descriptor in one image is compared to every descriptor in the other. It’s accurate but computationally intensive.
 2. FLANN Matching: Uses approximations to speed up matching, which is especially useful for large sets of descriptors. The knnMatch method finds the two nearest neighbors for each descriptor, and we use Lowe’s ratio test to keep only good matches.
@@ -386,6 +389,7 @@ plt.imshow(orb_flann_matches_img)
 plt.tight_layout()
 plt.show()
 ```
+![mp3-step4](https://github.com/user-attachments/assets/8219df8e-7789-4a0a-80da-30c2b7d35fa7)
 Discussion
 1. Homography Matrix: This matrix represents the transformation needed to map points from one image to another. It’s calculated using RANSAC (Random Sample Consensus) to remove outliers.
 2. Image Warping: With the homography matrix, we warp the first image to align with the second. This is especially useful in applications like panoramic image stitching.
