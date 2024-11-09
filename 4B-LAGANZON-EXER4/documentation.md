@@ -1,23 +1,15 @@
-# CSST106 - Perception and Computer Vision: Exercise 4
 
+# CSST106 - Perception and Computer Vision: Exercise 4
 
 ### Jonathan Q. Laganzon
 ### BSCS-4B
 
-### ***Exercise 1: HOG (Histogram of Oriented Gradients) Object Detection***
 
-```python
-from google.colab import drive
-drive.mount('/content/drive')
-```
+## Exercise 1: HOG (Histogram of Oriented Gradients) Object Detection
 
-### Explanation
-This code block executes the following tasks:
-
-- **Functionality**: Describe what the function or code block does.
-- **Parameters**: Describe any key parameters or variables involved.
-- **Output**: Detail expected output or visualization.
-
+### Purpose
+This exercise uses HOG, a method that identifies shapes and edges in an image, to detect objects like people.
+### Code
 ```python
 import cv2
 import numpy as np
@@ -72,32 +64,25 @@ ax2.set_title('HOG Feature Visualization')
 ax2.axis('off')
 
 plt.show()
-
 ```
 
 ### Explanation
-This code block executes the following tasks:
+1. **Load the Image**: Reads the image to detect objects.
+2. **Convert to Grayscale**: Simplifies processing.
+3. **HOG Detector**: Uses HOG to detect objects based on shapes and edges.
+4. **Draw Bounding Boxes**: Highlights detected objects.
 
-- **Functionality**: Describe what the function or code block does.
-- **Parameters**: Describe any key parameters or variables involved.
-- **Output**: Detail expected output or visualization.
 
-### ***Exercise 2: YOLO (You Only Look Once) Object Detection***
+## Exercise 2: YOLO (You Only Look Once) Object Detection
 
+### Purpose
+YOLO detects multiple objects in an image quickly, making it good for real-time applications.
+
+### Code
 ```python
 !wget https://pjreddie.com/media/files/yolov3.weights
 !wget https://raw.githubusercontent.com/pjreddie/darknet/master/cfg/yolov3.cfg
 
-```
-
-### Explanation
-This code block executes the following tasks:
-
-- **Functionality**: Describe what the function or code block does.
-- **Parameters**: Describe any key parameters or variables involved.
-- **Output**: Detail expected output or visualization.
-
-```python
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
@@ -147,53 +132,25 @@ plt.show()
 ```
 
 ### Explanation
-This code block executes the following tasks:
+1. **Load YOLO Model**: Sets up YOLO for object detection.
+2. **Preprocess Image**: Adjusts image size and format for YOLO.
+3. **Detection**: YOLO finds objects and draws boxes around them.
 
-- **Functionality**: Describe what the function or code block does.
-- **Parameters**: Describe any key parameters or variables involved.
-- **Output**: Detail expected output or visualization.
 
-### ***Exercise 3: SSD (Single Shot MultiBox Detector) with TensorFlow***
+## Exercise 3: SSD (Single Shot MultiBox Detector) with TensorFlow
 
+### Purpose
+SSD detects objects in images, like YOLO, but uses TensorFlow to process images.
+
+### Code
 ```python
 !wget https://raw.githubusercontent.com/pjreddie/darknet/master/data/coco.names
-```
-
-### Explanation
-This code block executes the following tasks:
-
-- **Functionality**: Describe what the function or code block does.
-- **Parameters**: Describe any key parameters or variables involved.
-- **Output**: Detail expected output or visualization.
-
-```python
 with open("/content/coco.names", "r") as f:
     class_names = f.read().splitlines()
 
-```
-
-### Explanation
-This code block executes the following tasks:
-
-- **Functionality**: Describe what the function or code block does.
-- **Parameters**: Describe any key parameters or variables involved.
-- **Output**: Detail expected output or visualization.
-
-```python
-# Download the SSD MobileNet V2 COCO model
 !wget http://download.tensorflow.org/models/object_detection/ssd_mobilenet_v2_coco_2018_03_29.tar.gz
 !tar -xzvf ssd_mobilenet_v2_coco_2018_03_29.tar.gz
 
-```
-
-### Explanation
-This code block executes the following tasks:
-
-- **Functionality**: Describe what the function or code block does.
-- **Parameters**: Describe any key parameters or variables involved.
-- **Output**: Detail expected output or visualization.
-
-```python
 import tensorflow as tf
 import cv2
 import numpy as np
@@ -233,62 +190,37 @@ plt.show()  # Display the image
 ```
 
 ### Explanation
-This code block executes the following tasks:
+1. **Load SSD Model**: Sets up SSD for object detection.
+2. **Preprocess Image**: Formats image for SSD.
+3. **Detection**: SSD finds objects and draws boxes.
 
-- **Functionality**: Describe what the function or code block does.
-- **Parameters**: Describe any key parameters or variables involved.
-- **Output**: Detail expected output or visualization.
 
-### ***Exercise 4: Traditional vs. Deep Learning Object Detection Comparison***
 
-```python
-# Define your dataset directory (update this to your actual dataset path)
-image_directory = '/content/drive/MyDrive/photo_dataset'  # Change this to your dataset path
+## Exercise 4: Comparison - Traditional vs. Deep Learning Object Detection
 
-# Extract features and labels
-features, labels = extract_hog_features(image_directory)
+### Purpose
 
-```
+ Advantages of HOG-SVM:
+- Requires less computational power and is straightforward to implement.
+- Effective for specific applications, such as pedestrian detection, where high precision on particular object types is needed.
 
-### Explanation
-This code block executes the following tasks:
+ Disadvantages of HOG-SVM:
+- Involves manual feature extraction, which can be time-consuming.
+- Struggles to maintain performance on diverse or complex datasets.
+- Generally slower than deep learning models for large-scale object detection.
 
-- **Functionality**: Describe what the function or code block does.
-- **Parameters**: Describe any key parameters or variables involved.
-- **Output**: Detail expected output or visualization.
+Advantages of YOLO/SSD:
+- Offers high accuracy and can detect multiple objects at once, making it well-suited for real-time detection.
+- Provides faster processing speeds, ideal for applications needing quick responses.
+- Capable of handling complex datasets with a wide range of object sizes.
 
-```python
+ Disadvantages of YOLO/SSD:
+- Demands more computational resources, often requiring a GPU for optimal performance.
+- Training from scratch can be challenging without access to large datasets.
+- May have difficulty detecting very small objects or those that are partially obscured.
 
-# Step 4: Document the Advantages and Disadvantages
 
-# Advantages of HOG-SVM:
-# - Simpler and requires less computational resources.
-# - Good for specific tasks like pedestrian detection.
-
-# Disadvantages of HOG-SVM:
-# - Requires manual feature engineering.
-# - Performance degrades with complex and varied datasets.
-# - Slower than deep learning methods for large-scale detection.
-
-# Advantages of YOLO/SSD:
-# - High accuracy for detecting multiple objects simultaneously.
-# - Faster inference times, suitable for real-time applications.
-# - Can handle more complex datasets with varying object sizes.
-
-# Disadvantages of YOLO/SSD:
-# - Requires more computational power (GPU).
-# - Difficult to train from scratch without large datasets.
-# - May struggle with detecting small or occluded objects.
-
-```
-
-### Explanation
-This code block executes the following tasks:
-
-- **Functionality**: Describe what the function or code block does.
-- **Parameters**: Describe any key parameters or variables involved.
-- **Output**: Detail expected output or visualization.
-
+### Code
 ```python
 import cv2
 import time
@@ -406,10 +338,9 @@ for image_path in image_paths:
 ```
 
 ### Explanation
-This code block executes the following tasks:
+1. **HOG-SVM**: Uses traditional feature extraction, which requires less computing power but can be slower.
+2. **SSD**: Uses deep learning, which is faster and more accurate but needs more resources.
 
-- **Functionality**: Describe what the function or code block does.
-- **Parameters**: Describe any key parameters or variables involved.
-- **Output**: Detail expected output or visualization.
+---
 
-
+Each exercise demonstrates different methods of object detection, from simpler traditional approaches to more complex deep learning techniques.
