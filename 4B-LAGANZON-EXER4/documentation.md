@@ -8,7 +8,8 @@
 ## Exercise 1: HOG (Histogram of Oriented Gradients) Object Detection
 
 ### Purpose
-This exercise uses HOG, a method that identifies shapes and edges in an image, to detect objects like people.
+HOG (Histogram of Oriented Gradients) is used to detect objects based on the gradient orientations in an image. This method captures shape and structure details, often used for detecting pedestrians or other objects with distinct edges.
+
 ### Code
 ```python
 import cv2
@@ -65,6 +66,7 @@ ax2.axis('off')
 
 plt.show()
 ```
+![exer4-ex1](https://github.com/user-attachments/assets/603a4b4f-2676-44da-b597-08017e02f00b)
 
 ### Explanation
 1. **Load the Image**: Reads the image to detect objects.
@@ -76,7 +78,7 @@ plt.show()
 ## Exercise 2: YOLO (You Only Look Once) Object Detection
 
 ### Purpose
-YOLO detects multiple objects in an image quickly, making it good for real-time applications.
+YOLO (You Only Look Once) is a deep learning-based method for real-time object detection. YOLO processes the image in a single pass, quickly identifying multiple objects, which makes it suitable for applications like security cameras, self-driving cars, and real-time video analysis.
 
 ### Code
 ```python
@@ -131,6 +133,7 @@ plt.axis('off')
 plt.show()
 ```
 
+![exer4-ex2](https://github.com/user-attachments/assets/48e1c5fd-3f5a-4c1f-ae92-3234895822e0)
 ### Explanation
 1. **Load YOLO Model**: Sets up YOLO for object detection.
 2. **Preprocess Image**: Adjusts image size and format for YOLO.
@@ -140,7 +143,7 @@ plt.show()
 ## Exercise 3: SSD (Single Shot MultiBox Detector) with TensorFlow
 
 ### Purpose
-SSD detects objects in images, like YOLO, but uses TensorFlow to process images.
+SSD (Single Shot MultiBox Detector) is another deep learning method that detects objects in images. It’s effective for real-time applications and uses TensorFlow, making it more flexible for various hardware configurations.
 
 ### Code
 ```python
@@ -189,6 +192,7 @@ plt.axis('off')  # Turn off axis labels
 plt.show()  # Display the image
 ```
 
+![exer4-ex3](https://github.com/user-attachments/assets/ca0fe918-8f91-4dff-b83b-e1ef3323c901)
 ### Explanation
 1. **Load SSD Model**: Sets up SSD for object detection.
 2. **Preprocess Image**: Formats image for SSD.
@@ -199,6 +203,8 @@ plt.show()  # Display the image
 ## Exercise 4: Comparison - Traditional vs. Deep Learning Object Detection
 
 ### Purpose
+This exercise compares traditional (HOG-SVM) and deep learning (SSD/YOLO) object detection methods. Understanding these differences helps decide which method to use depending on the project needs, such as real-time processing or resource availability.
+
 
  Advantages of HOG-SVM:
 - Requires less computational power and is straightforward to implement.
@@ -336,6 +342,35 @@ for image_path in image_paths:
     print(f"HOG-SVM Accuracy for {image_path}: {hog_svm_accuracy * 100:.2f}%")
     print(f"SSD Accuracy for {image_path}: {ssd_yolo_accuracy * 100:.2f}%\n")
 ```
+
+![exer4-ex4](https://github.com/user-attachments/assets/a919662c-aa5b-4650-b17c-d5e32c32000a)
+
+![exer4-ex4_1](https://github.com/user-attachments/assets/a8d8cfe0-7a21-47bd-88d7-7d08d904d3a5)
+
+![exer4-ex4_2](https://github.com/user-attachments/assets/8e715d8c-d146-4a42-b84f-2b17953bc8eb)
+
+![exer4-ex4_3](https://github.com/user-attachments/assets/87395952-40d5-47c5-adae-ba12082dcab6)
+# Performance Analysis
+
+The table below summarizes the detection time and accuracy for each image using both HOG-SVM and SSD/YOLO.
+
+| Image Path                                             | Method   | Detection Time (s) | Accuracy (%) |
+|--------------------------------------------------------|----------|---------------------|--------------|
+| `/content/drive/MyDrive/2x2/photo_2024-10-26_14-35-28.jpg` | HOG-SVM  | 6.12                | 28.86        |
+|                                                        | SSD/YOLO | 5.87                | 40.88        |
+| `/content/drive/MyDrive/2x2/gtr.jpg`                   | HOG-SVM  | 1.17                | 0.88         |
+|                                                        | SSD/YOLO | 0.21                | 20.88        |
+| `/content/drive/MyDrive/2x2/gogo.jpg`                  | HOG-SVM  | 2.59                | 20.88        |
+|                                                        | SSD/YOLO | 0.24                | 0.88         |
+| `/content/drive/MyDrive/2x2/SIDE.jpg`                  | HOG-SVM  | 0.98                | 20.88        |
+|                                                        | SSD/YOLO | 0.11                | 20.88        |
+
+
+Keypoints
+- **Detection Time**: Time taken by each method (HOG-SVM and SSD/YOLO) to process and detect objects in each image.
+- **Accuracy**: The detection accuracy percentage of each method for the given images.
+
+Each method's performance varies based on the image, with SSD/YOLO generally achieving faster detection times. Accuracy levels differ depending on the complexity and type of objects in each image.
 
 ### Explanation
 1. **HOG-SVM**: Uses traditional feature extraction, which requires less computing power but can be slower.
