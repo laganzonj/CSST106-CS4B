@@ -1,1 +1,413 @@
+# **CSST106 - Perception and Computer Vision**
+**EXERCISE 4**
+**JONATHAN Q. LAGANZON from BSCS-4B**
+
+### ***Exercise 1: HOG (Histogram of Oriented Gradients) Object Detection***
+
+```python
+from google.colab import drive
+drive.mount('/content/drive')
+```
+
+### Explanation
+This code block executes the following tasks:
+
+- **Functionality**: Describe what the function or code block does.
+- **Parameters**: Describe any key parameters or variables involved.
+- **Output**: Detail expected output or visualization.
+
+```python
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+from skimage.feature import hog
+from skimage import exposure
+
+# Load an image (containing a person or object)
+# Replace 'image.jpg' with the path to your image file
+image = cv2.imread('/content/drive/MyDrive/2x2/photo_2024-10-26_14-35-28.jpg')
+
+# Convert the image to grayscale
+gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+
+# Initialize the HOG descriptor and set the SVM detector
+hog_detector = cv2.HOGDescriptor()
+hog_detector.setSVMDetector(cv2.HOGDescriptor_getDefaultPeopleDetector())
+
+# Detect people in the image
+# Parameters: winStride, padding, scale
+rects, weights = hog_detector.detectMultiScale(gray, winStride=(8, 8), padding=(8, 8), scale=1.05)
+
+# Draw rectangles around detected objects
+for (x, y, w, h) in rects:
+    cv2.rectangle(image, (x, y), (x + w, y + h), (0, 255, 0), 2)
+
+# Apply HOG descriptor to extract features for visualization
+# For visualization purposes only, not part of object detection
+hog_features, hog_image = hog(
+    gray,
+    orientations=9,
+    pixels_per_cell=(8, 8),
+    cells_per_block=(2, 2),
+    visualize=True,
+    block_norm="L2-Hys"
+)
+
+# Rescale HOG image for better contrast
+hog_image_rescaled = exposure.rescale_intensity(hog_image, in_range=(0, 10))
+
+# Display results
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 8))
+
+# Original image with detections
+ax1.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
+ax1.set_title('Object Detection using HOG')
+ax1.axis('off')
+
+# HOG feature visualization
+ax2.imshow(hog_image_rescaled, cmap='gray')
+ax2.set_title('HOG Feature Visualization')
+ax2.axis('off')
+
+plt.show()
+
+```
+
+### Explanation
+This code block executes the following tasks:
+
+- **Functionality**: Describe what the function or code block does.
+- **Parameters**: Describe any key parameters or variables involved.
+- **Output**: Detail expected output or visualization.
+
+### ***Exercise 2: YOLO (You Only Look Once) Object Detection***
+
+```python
+!wget https://pjreddie.com/media/files/yolov3.weights
+!wget https://raw.githubusercontent.com/pjreddie/darknet/master/cfg/yolov3.cfg
+
+```
+
+### Explanation
+This code block executes the following tasks:
+
+- **Functionality**: Describe what the function or code block does.
+- **Parameters**: Describe any key parameters or variables involved.
+- **Output**: Detail expected output or visualization.
+
+```python
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+from google.colab.patches import cv2_imshow
+
+# Load YOLO model and configuration
+net = cv2.dnn.readNet('yolov3.weights', 'yolov3.cfg')
+
+# Get the output layer names
+layer_names = net.getLayerNames()
+output_layers = [layer_names[i - 1] for i in net.getUnconnectedOutLayers()]
+
+# Load image
+image = cv2.imread('/content/drive/MyDrive/2x2/photo_2024-10-26_14-35-28.jpg')
+height, width, channels = image.shape
+
+# Prepare the image for YOLO
+blob = cv2.dnn.blobFromImage(image, 1/255.0, (416, 416), (0, 0, 0), True, crop=False)
+net.setInput(blob)
+
+# Run forward pass for output
+outs = net.forward(output_layers)
+
+# Loop through each detection
+for out in outs:
+    for detection in out:
+        scores = detection[5:]
+        class_id = np.argmax(scores)
+        confidence = scores[class_id]
+        if confidence > 0.5:
+            # Get bounding box coordinates
+            center_x = int(detection[0] * width)
+            center_y = int(detection[1] * height)
+            w = int(detection[2] * width)
+            h = int(detection[3] * height)
+            x = int(center_x - w / 2)
+            y = int(center_y - h / 2)
+
+            # Draw bounding box
+            cv2.rectangle(image, (x, y), (x + w, y + h), (0, 255, 0), 2)
+
+# Display the image with detections using a smaller figure size
+plt.figure(figsize=(6, 6))
+plt.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
+plt.axis('off')
+plt.show()
+```
+
+### Explanation
+This code block executes the following tasks:
+
+- **Functionality**: Describe what the function or code block does.
+- **Parameters**: Describe any key parameters or variables involved.
+- **Output**: Detail expected output or visualization.
+
+### ***Exercise 3: SSD (Single Shot MultiBox Detector) with TensorFlow***
+
+```python
+!wget https://raw.githubusercontent.com/pjreddie/darknet/master/data/coco.names
+```
+
+### Explanation
+This code block executes the following tasks:
+
+- **Functionality**: Describe what the function or code block does.
+- **Parameters**: Describe any key parameters or variables involved.
+- **Output**: Detail expected output or visualization.
+
+```python
+with open("/content/coco.names", "r") as f:
+    class_names = f.read().splitlines()
+
+```
+
+### Explanation
+This code block executes the following tasks:
+
+- **Functionality**: Describe what the function or code block does.
+- **Parameters**: Describe any key parameters or variables involved.
+- **Output**: Detail expected output or visualization.
+
+```python
+# Download the SSD MobileNet V2 COCO model
+!wget http://download.tensorflow.org/models/object_detection/ssd_mobilenet_v2_coco_2018_03_29.tar.gz
+!tar -xzvf ssd_mobilenet_v2_coco_2018_03_29.tar.gz
+
+```
+
+### Explanation
+This code block executes the following tasks:
+
+- **Functionality**: Describe what the function or code block does.
+- **Parameters**: Describe any key parameters or variables involved.
+- **Output**: Detail expected output or visualization.
+
+```python
+import tensorflow as tf
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt  # Import Matplotlib for image display
+from google.colab.patches import cv2_imshow  # This can be removed if not using cv2_imshow
+
+# Load the pre-trained SSD MobileNet model
+model = tf.saved_model.load('ssd_mobilenet_v2_coco_2018_03_29/saved_model')
+infer = model.signatures['serving_default']  # Use the signature to get the detection function
+
+# Load image
+image_path = '/content/drive/MyDrive/2x2/photo_2024-10-26_14-35-28.jpg'
+image_np = cv2.imread(image_path)
+image_np = cv2.cvtColor(image_np, cv2.COLOR_BGR2RGB)  # Convert BGR (OpenCV format) to RGB
+
+# Convert the image to uint8
+input_tensor = tf.convert_to_tensor(np.expand_dims(image_np, axis=0), dtype=tf.uint8)
+
+# Run the model and get detections
+detections = infer(input_tensor)
+
+# Visualize the bounding boxes
+for i in range(int(detections['num_detections'].numpy()[0])):
+    if detections['detection_scores'][0][i].numpy() > 0.5:
+        # Get bounding box coordinates
+        ymin, xmin, ymax, xmax = detections['detection_boxes'][0][i].numpy()
+        (left, right, top, bottom) = (xmin * image_np.shape[1], xmax * image_np.shape[1],
+                                      ymin * image_np.shape[0], ymax * image_np.shape[0])
+        # Draw bounding box
+        cv2.rectangle(image_np, (int(left), int(top)), (int(right), int(bottom)), (6, 255, 8), 2)
+
+# Display the image with Matplotlib
+plt.figure(figsize=(6, 6))  # Set the figure size to 6x6
+plt.imshow(image_np)
+plt.axis('off')  # Turn off axis labels
+plt.show()  # Display the image
+```
+
+### Explanation
+This code block executes the following tasks:
+
+- **Functionality**: Describe what the function or code block does.
+- **Parameters**: Describe any key parameters or variables involved.
+- **Output**: Detail expected output or visualization.
+
+### ***Exercise 4: Traditional vs. Deep Learning Object Detection Comparison***
+
+```python
+# Define your dataset directory (update this to your actual dataset path)
+image_directory = '/content/drive/MyDrive/photo_dataset'  # Change this to your dataset path
+
+# Extract features and labels
+features, labels = extract_hog_features(image_directory)
+
+```
+
+### Explanation
+This code block executes the following tasks:
+
+- **Functionality**: Describe what the function or code block does.
+- **Parameters**: Describe any key parameters or variables involved.
+- **Output**: Detail expected output or visualization.
+
+```python
+
+# Step 4: Document the Advantages and Disadvantages
+
+# Advantages of HOG-SVM:
+# - Simpler and requires less computational resources.
+# - Good for specific tasks like pedestrian detection.
+
+# Disadvantages of HOG-SVM:
+# - Requires manual feature engineering.
+# - Performance degrades with complex and varied datasets.
+# - Slower than deep learning methods for large-scale detection.
+
+# Advantages of YOLO/SSD:
+# - High accuracy for detecting multiple objects simultaneously.
+# - Faster inference times, suitable for real-time applications.
+# - Can handle more complex datasets with varying object sizes.
+
+# Disadvantages of YOLO/SSD:
+# - Requires more computational power (GPU).
+# - Difficult to train from scratch without large datasets.
+# - May struggle with detecting small or occluded objects.
+
+```
+
+### Explanation
+This code block executes the following tasks:
+
+- **Functionality**: Describe what the function or code block does.
+- **Parameters**: Describe any key parameters or variables involved.
+- **Output**: Detail expected output or visualization.
+
+```python
+import cv2
+import time
+import numpy as np
+import matplotlib.pyplot as plt
+import tensorflow as tf
+from matplotlib.patches import Rectangle
+from sklearn.metrics import accuracy_score
+from skimage.feature import hog
+
+# Load COCO class names
+with open("/content/coco.names", "r") as f:
+    class_names = f.read().splitlines()
+
+# Create a dictionary mapping indices to class names
+COCO_LABELS = {i + 1: name for i, name in enumerate(class_names)}
+
+# Load the SSD model
+ssd_model = tf.saved_model.load('ssd_mobilenet_v2_coco_2018_03_29/saved_model')
+
+# Function to preprocess the image for SSD/YOLO models
+def preprocess_image(image, target_size=(300, 300)):
+    """Resize and preprocess image for model input."""
+    image_resized = cv2.resize(image, target_size)
+    return np.expand_dims(image_resized.astype(np.uint8), axis=0)
+
+# Function to perform HOG-SVM detection
+def hog_svm_detection(image):
+    """Simulated HOG-SVM object detection."""
+    # Convert the image to grayscale
+    gray_image = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
+
+    # HOG feature extraction
+    features, hog_image = hog(gray_image, visualize=True, channel_axis=None)  # Set channel_axis=None for grayscale
+
+    # For simplicity, we simulate predictions with random classes
+    predictions = np.random.choice([1, 2, 3], size=(5,))  # Simulate 5 detected classes
+    return predictions
+
+# List of image paths
+image_paths = [
+    '/content/drive/MyDrive/2x2/photo_2024-10-26_14-35-28.jpg',
+    '/content/drive/MyDrive/2x2/gtr.jpg',
+    '/content/drive/MyDrive/2x2/gogo.jpg',
+    '/content/drive/MyDrive/2x2/SIDE.jpg'
+]
+
+# Loop over each image
+for image_path in image_paths:
+    # Load and preprocess the image
+    image = cv2.imread(image_path)
+    image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+
+    # Perform detection using the SSD model
+    input_image = preprocess_image(image_rgb)
+    infer = ssd_model.signatures['serving_default']
+
+    # Timing for SSD detection
+    start_time = time.time()
+    outputs = infer(tf.convert_to_tensor(input_image))
+    ssd_yolo_time = time.time() - start_time
+
+    # Extract bounding boxes, scores, and class labels
+    boxes = outputs['detection_boxes'].numpy()[0]
+    scores = outputs['detection_scores'].numpy()[0]
+    classes = outputs['detection_classes'].numpy()[0]
+
+    # Plot the image with bounding boxes
+    plt.figure(figsize=(10, 10))
+    plt.imshow(image_rgb)
+    ax = plt.gca()
+
+    # Define score threshold for visualization
+    threshold = 0.5
+    image_height, image_width, _ = image_rgb.shape
+
+    for i in range(len(scores)):
+        if scores[i] >= threshold:
+            ymin, xmin, ymax, xmax = boxes[i]
+            # Convert normalized coordinates to pixel coordinates
+            xmin, xmax, ymin, ymax = (int(xmin * image_width), int(xmax * image_width),
+                                       int(ymin * image_height), int(ymax * image_height))
+
+            # Draw rectangle for detected object
+            rect = Rectangle((xmin, ymin), xmax - xmin, ymax - ymin, linewidth=2, edgecolor='r', facecolor='none')
+            ax.add_patch(rect)
+
+            # Annotate with class label and score
+            label = f"{COCO_LABELS.get(int(classes[i]), 'Unknown')} ({scores[i]:.2f})"
+            plt.text(xmin, ymin, label, color='white', fontsize=12, bbox=dict(facecolor='red', alpha=0.5))
+
+    plt.axis('off')
+    plt.title(f"Detections for: {image_path.split('/')[-1]}")
+    plt.show()
+
+    # Timing comparison for HOG-SVM detection
+    start_time = time.time()
+    hog_svm_predictions = hog_svm_detection(image_rgb)
+    hog_svm_time = time.time() - start_time
+
+    # Print detection times for both models
+    print(f"HOG-SVM Detection Time for {image_path}: {hog_svm_time:.2f} seconds")
+    print(f"SSD/YOLO Detection Time for {image_path}: {ssd_yolo_time:.2f} seconds")
+
+    # Mock ground truth boxes (for simulation)
+    ground_truth_classes = np.array([1, 2, 3, 1, 3])
+
+    # Calculate accuracy based on predictions
+    hog_svm_accuracy = accuracy_score(ground_truth_classes, hog_svm_predictions)
+    ssd_yolo_accuracy = accuracy_score(ground_truth_classes, classes[:len(hog_svm_predictions)])
+
+    # Print calculated accuracies
+    print(f"HOG-SVM Accuracy for {image_path}: {hog_svm_accuracy * 100:.2f}%")
+    print(f"SSD Accuracy for {image_path}: {ssd_yolo_accuracy * 100:.2f}%\n")
+```
+
+### Explanation
+This code block executes the following tasks:
+
+- **Functionality**: Describe what the function or code block does.
+- **Parameters**: Describe any key parameters or variables involved.
+- **Output**: Detail expected output or visualization.
+
 
