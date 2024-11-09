@@ -1,5 +1,5 @@
 
-# CSST106 - Perception and Computer Vision: Exercise 4
+# CSST106 - Perception and Computer Vision: Exercise 4: Object Detection and Recognition
 
 ### Jonathan Q. Laganzon
 ### BSCS-4B
