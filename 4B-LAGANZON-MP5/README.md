@@ -1,4 +1,4 @@
-# CSST106 - Perception and Computer Vision: Machine Problem 5: Machine Problem: Object Detection and Recognition using YOLO.
+# CSST106 - Perception and Computer Vision: Machine Problem 5: Object Detection and Recognition using YOLO.
 
 ### Jonathan Q. Laganzon
 ### BSCS-4B
